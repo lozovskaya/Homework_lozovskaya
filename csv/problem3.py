@@ -45,9 +45,10 @@ for i in adm_areas.keys():
     for j in range(len(adm_areas[i])):
         adm_areas[i][j]["EDU_NAME"] = edited_name_school(adm_areas[i][j]["EDU_NAME"].split())
     adm_areas[i].sort(key=lambda x: x["Percent"])
-for i in adm_areas.keys():
-    print(i, ":", sep="")
-    for j in range(len(adm_areas[i])):
-        print(adm_areas[i][j]["EDU_NAME"], "-", str(adm_areas[i][j]["Percent"]) + "%", end=" (")
-        print(adm_areas[i][j]["PASSES_OVER_220"], "out of", str(adm_areas[i][j]["PASSED_NUMBER_FULL"]) + ")")
-    print()
+with open("Results.md", "w") as file_output:
+    for i in adm_areas.keys():
+        print("**", i, "**:", sep="", file=file_output)
+        for j in range(len(adm_areas[i])):
+            print(adm_areas[i][j]["EDU_NAME"], "-", str(adm_areas[i][j]["Percent"]) + "%", end=" (", file=file_output)
+            print(adm_areas[i][j]["PASSES_OVER_220"], "out of", str(adm_areas[i][j]["PASSED_NUMBER_FULL"]) + ")", file=file_output)    
+        print(file=file_output)
