@@ -47,8 +47,8 @@ for i in adm_areas.keys():
     adm_areas[i].sort(key=lambda x: x["Percent"])
 with open("Results.md", "w") as file_output:
     for i in adm_areas.keys():
-        print("**", i, "**:", sep="", file=file_output)
+        print("**", i, "**:\n", sep="", file=file_output)
         for j in range(len(adm_areas[i])):
             print(adm_areas[i][j]["EDU_NAME"], "-", str(adm_areas[i][j]["Percent"]) + "%", end=" (", file=file_output)
             print(adm_areas[i][j]["PASSES_OVER_220"], "out of", str(adm_areas[i][j]["PASSED_NUMBER_FULL"]) + ")\n", file=file_output)    
-        print(file=file_output)
+        print("\n", file=file_output)
