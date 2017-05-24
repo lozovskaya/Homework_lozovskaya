@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import elizabeth
 
 
 with open("Revizor.txt") as book:
@@ -11,12 +12,12 @@ for letter in text:
 			count_letters[letter] = 1
 		else:
 			count_letters[letter] += 1
-xdata = [0, 1, 2, 4, 5, 8]
-ydata = [0.1, 0.2, 0.4, 0.8, 0.6, 0.1]
 fig = plt.figure()
-print(list(count_letters.keys()))
-plt.bar(list(count_letters.values()), labels=list(count_letters.keys()))
-plt.grid(True)   # линии вспомогательной сетки
+pair = list(count_letters.items())
+pair.sort(key=lambda x: x[0])
+letters = [pair[i][0] for i in range(len(pair))]
+count = [pair[i][1] for i in range(len(pair))]
+colors = [elizabeth.Text('en').color().lower() for i in range(1, 33)]
+left = [i for i in range(1, 33)]
+plt.bar(left, height=count, color=colors, tick_label=letters, align='center')
 plt.show()
-'''pylab.bar(list(count_letters.keys()), list(count_letters.values()))
-pylab.show()'''
